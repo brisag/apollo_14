@@ -15,5 +15,14 @@ RSpec.describe 'As a visitor' do
      expect(page).to have_content(astro2.age)
      expect(page).to have_content(astro2.job)
    end
+
+   it 'shows the average age of all astronauts'do
+     astro1 = Astronaut.create!(name: 'Buzz Aldrin', age: 30, job: 'Space Walk')
+     astro2 = Astronaut.create!(name: 'Niel Armstrong', age: 40, job: 'Moon Walk')
+
+      visit '/astronauts'
+
+      expect(page).to have_content(Astronaut.average_age)
+    end
   end
 end
